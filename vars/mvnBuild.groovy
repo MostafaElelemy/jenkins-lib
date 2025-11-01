@@ -9,8 +9,6 @@ def call(Map cfg = [:]) {
   withEnv(["JAVA_HOME=${JDK}", "PATH+JAVA=${JDK}/bin", "PATH+MAVEN=${MAVEN}/bin"]) {
     sh "mvn ${goals}"
   }
-
-  // تقارير و artifacts
   junit 'target/surefire-reports/*.xml'
   archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
 }
